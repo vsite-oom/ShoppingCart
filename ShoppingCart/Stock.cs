@@ -2,24 +2,41 @@
 {
     public class Stock
     {
-        private Dictionary<int, uint> products;
+        private Dictionary<Product, int> products;
 
         public Stock()
         {
-            products = new Dictionary<int, uint>();
-        }
-        public void AddToStock(Product product, uint numberOfItems = 1)
-        {
-            int id = product.GetId();
-            products[id] += numberOfItems;
+            products = new Dictionary<Product, int>();
         }
 
-        public bool RemoveProduct(int id)
+        public void AddToStock(Product product, int numberOfItems = 1)
         {
-            if (products.ContainsKey(id))
+            int id = product.GetId();
+            if (products.ContainsKey(product))
             {
-                products[id]--;
-                if (products[id] == 0) products.Remove(id);
+                products[product] += numberOfItems;
+            }
+            else products.Add(product, numberOfItems);
+            
+        }
+
+        public bool Contains(Product product)
+        {
+            return products.ContainsKey(product);
+        }
+
+        public int GetNumberOfItems(Product product)
+        {
+            return products[product];
+        }
+
+        public bool RemoveProduct(Product product, int numberOfProducts = 1)
+        {
+            int id = product.GetId();
+            if (products.ContainsKey(product) && products[product] >= numberOfProducts)
+            {
+                products[product] -= numberOfProducts;
+                if (products[product] == 0) products.Remove(product);
                 return true;
             }
             return false;
