@@ -15,10 +15,14 @@
 
         public double CalculateAmount(Cart cart)
         {
+            Console.WriteLine("Items in cart:");
             var products = cart.GetProducts();
             foreach (var product in products)
             {
-                _amount += product.Key.GetPrice * product.Value;
+                var price = product.Key.GetPrice * product.Value;
+                _amount += price;
+                Console.WriteLine($"Proizvod: {product.Key}; Cijena: {product.Key.GetPrice}; Komada: {product.Value}");
+                Console.WriteLine($"Suma proizvoda: {price:f2}");
             }
             return _amount;
         }
