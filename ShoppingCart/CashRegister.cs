@@ -18,7 +18,7 @@
             var products = cart.GetProducts();
             foreach (var product in products)
             {
-                _amount += product.Key.GetPrice() * product.Value;
+                _amount += product.Key.GetPrice * product.Value;
             }
             return _amount;
         }
