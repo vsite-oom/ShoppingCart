@@ -44,6 +44,9 @@
                 Console.WriteLine("Can't remove more product than already in Cart.");
             }
         }
-
+        public Dictionary<Product, int> GetProducts()
+        {
+            return _products;
+        }
     }
 }
