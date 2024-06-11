@@ -15,5 +15,9 @@
             _price = price;
         }
 
+        public double GetPrice()
+        {
+            return _price;
+        }
     }
 }
